@@ -1,34 +1,35 @@
 package observer;
 
 import observer.Classes.*;
+import observer.Interfaces.IDisplayElement;
 
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
-        ConcreteObserver first_observer = new ConcreteObserver();
-        ConcreteSubject subject = new ConcreteSubject();
-        ConcreteObserver second_observer = new ConcreteObserver();
 
-        subject.registerObserver(first_observer);
+        WeatherData weatherData = new WeatherData();
 
-        subject.setState("Cold");
+        IDisplayElement[] displays = {new CurrentConditionsDisplay(), new ForecastDisplay(), new StatisticsDisplay()};
 
-        System.out.println(first_observer.getUpdates());
+        weatherData.registerObserver((CurrentConditionsDisplay) displays[0]);
+        weatherData.registerObserver((ForecastDisplay) displays[1]);
+        weatherData.registerObserver((StatisticsDisplay) displays[2]);
 
-        subject.registerObserver(second_observer);
+        for (IDisplayElement observer : displays) {
+            System.out.println(observer.display());
+        }
 
-        subject.setState("Sunny");
+        weatherData.notifyObservers();
 
-        System.out.println(first_observer.getUpdates());
-        System.out.println(second_observer.getUpdates());
+        for (IDisplayElement observer : displays) {
+            System.out.println(observer.display());
+        }
 
-        subject.removeObserver(second_observer);
+        weatherData.removeObserver((ForecastDisplay) displays[1]);
+        // weatherData.data[5] = 500;
 
-        subject.setState("Snowy");
-
-        System.out.println(first_observer.getUpdates());
-        System.out.println(second_observer.getUpdates());
-
+        for (IDisplayElement observer : displays) {
+            System.out.println(observer.display());
+        }
     }
 }
