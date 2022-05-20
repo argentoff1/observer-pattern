@@ -8,8 +8,11 @@ public class Main {
     public static void main(String[] args) {
 
         WeatherData weatherData = new WeatherData();
+        CurrentConditionsDisplay currentConditionsDisplay = new CurrentConditionsDisplay();
+        ForecastDisplay forecastDisplay = new ForecastDisplay();
+        StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
 
-        IDisplayElement[] displays = {new CurrentConditionsDisplay(), new ForecastDisplay(), new StatisticsDisplay()};
+        IDisplayElement[] displays = { currentConditionsDisplay, forecastDisplay, statisticsDisplay};
 
         weatherData.registerObserver((CurrentConditionsDisplay) displays[0]);
         weatherData.registerObserver((ForecastDisplay) displays[1]);
@@ -26,7 +29,7 @@ public class Main {
         }
 
         weatherData.removeObserver((ForecastDisplay) displays[1]);
-        // weatherData.data[5] = 500;
+        //weatherData.data[5] = String.valueOf(500);
 
         for (IDisplayElement observer : displays) {
             System.out.println(observer.display());

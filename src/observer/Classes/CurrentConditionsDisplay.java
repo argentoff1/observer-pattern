@@ -2,7 +2,6 @@ package observer.Classes;
 
 import observer.Interfaces.IDisplayElement;
 import observer.Interfaces.IObserver;
-import observer.Interfaces.ISubject;
 
 import java.util.Map;
 

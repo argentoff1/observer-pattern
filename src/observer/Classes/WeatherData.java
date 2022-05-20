@@ -31,11 +31,15 @@ public class WeatherData implements ISubject {
             observer.update(keys);
         }
     }
-
     /*
     public int This(String var) {
         keys[var] = value;
         this.notifyObserver();
+    }
+
+    public void setValue(int position, String value) {
+        keys[position] = value;
+        V putIfAbsent(K k, V v)
     }
      */
 }
