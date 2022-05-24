@@ -1,20 +1,35 @@
 package observer.Classes;
 
 import observer.Interfaces.*;
-
+import java.lang.*;
 import java.util.*;
 
 public class WeatherData implements ISubject {
-    private ArrayList<IObserver> observers = new ArrayList<IObserver>();
-    private Map<String, Integer> keys = new HashMap<String, Integer>();
-    public String[] data = {"temperature", "humidity", "pressure", "minTemperature",
-            "midTemperature", "maxTemperature", "sHumidity", "sPressure", "fWeatherForecast", "fHumidity", "fPressure",
-            "cTemperature", "cHumidity", "cPressure"};
+    //private float temperature, humidity, pressure;
+    private List<IObserver> observers = new ArrayList<>();
+    private HashMap<String, Integer> keys = new HashMap<>();
+    public List<String> data = new ArrayList<>();
+
+    {
+        data.add("temperature");
+        data.add("humidity");
+        data.add("pressure");
+        data.add("minTemperature");
+        data.add("midTemperature");
+        data.add("maxTemperature");
+        data.add("sHumidity");
+        data.add("sPressure");
+        data.add("fWeatherForecast");
+        data.add("fHumidity");
+        data.add("fPressure");
+        data.add("cTemperature");
+        data.add("cHumidity");
+        data.add("cPressure");
+    }
 
     public WeatherData() {
-        Random random = new Random();
         for (String key : data) {
-            keys.put(key, random.nextInt(100));
+            keys.put(key, (int) (Math.random() * 101));
         }
     }
 
@@ -32,14 +47,15 @@ public class WeatherData implements ISubject {
         }
     }
     /*
-    public int This(String var) {
-        keys[var] = value;
-        this.notifyObserver();
+    public void measurementsChanged() {
+        notifyObservers();
     }
 
-    public void setValue(int position, String value) {
-        keys[position] = value;
-        V putIfAbsent(K k, V v)
+    public void setMeasurements(float temperature, float humidity, float pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        measurementsChanged();
     }
      */
 }
