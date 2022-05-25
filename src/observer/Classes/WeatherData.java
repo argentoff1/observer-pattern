@@ -1,11 +1,11 @@
 package observer.Classes;
 
 import observer.Interfaces.*;
+
 import java.lang.*;
 import java.util.*;
 
 public class WeatherData implements ISubject {
-    //private float temperature, humidity, pressure;
     private List<IObserver> observers = new ArrayList<>();
     private HashMap<String, Integer> keys = new HashMap<>();
     public List<String> data = new ArrayList<>();
@@ -46,16 +46,4 @@ public class WeatherData implements ISubject {
             observer.update(keys);
         }
     }
-    /*
-    public void measurementsChanged() {
-        notifyObservers();
-    }
-
-    public void setMeasurements(float temperature, float humidity, float pressure) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        measurementsChanged();
-    }
-     */
 }

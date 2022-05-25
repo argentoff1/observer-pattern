@@ -11,7 +11,7 @@ public class Main {
         ForecastDisplay forecastDisplay = new ForecastDisplay();
         StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
 
-        IDisplayElement[] displays = { currentConditionsDisplay, forecastDisplay, statisticsDisplay};
+        IDisplayElement[] displays = {currentConditionsDisplay, forecastDisplay, statisticsDisplay};
 
         weatherData.registerObserver((CurrentConditionsDisplay) displays[0]);
         weatherData.registerObserver((ForecastDisplay) displays[1]);
@@ -26,19 +26,5 @@ public class Main {
         for (IDisplayElement observer : displays) {
             System.out.println(observer.display());
         }
-
-        weatherData.removeObserver((ForecastDisplay) displays[1]);
-
-        weatherData.data.set(5, "500");
-
-        for (IDisplayElement observer : displays) {
-            System.out.println(observer.display());
-        }
-        /*
-        weatherData.setMeasurements(50, 50, 50);
-        weatherData.setMeasurements(75, 75, 75);
-        weatherData.setMeasurements(100, 100, 100);
-
-         */
     }
 }
